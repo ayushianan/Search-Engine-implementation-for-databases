@@ -3,6 +3,21 @@ from math import log, sqrt
 import sys
 from nltk.corpus import stopwords
 import re
+import sys, os
+projectpath = os.path.dirname(os.path.realpath('querying.py'))
+#directory path
+libpath = projectpath + '/lib'
+#lib path
+sys.path.append(libpath)
+os.chdir(projectpath)
+import parsing
+import re
+import time
+collection = 'New Testament'
+#mongo folder
+# Indicate the path where relative to the collection
+os.chdir(projectpath + '/data/' + collection)
+files = [file for file in os.listdir('.') if os.path.isfile(file)]
 
 def cleanQuery(string):
     frenchStopWords = stopwords.words('french')
@@ -31,6 +46,31 @@ def rankDocuments(index, words):
                 rankings[document] += TF
     # Order results according to the scores
     rankings = list(reversed(sorted(rankings.items(), key=lambda x: x[1])))
+    return rankings
+
+def rankDocuments1(index, words):
+    # We rank each document based on query
+    rankings = {}
+    for word in words:
+        for document in index[word]['document(s)'].keys():
+            # Term Frequency (log to reduce document size scale effect)
+            TF = index[word]['document(s)'][document]['position(s)']
+            for file in files:
+                        name = re.match('(^[^.]*)', file).group(0)
+                        if name==document:
+                                    data = open(file).read().splitlines()   
+                                    words = parsing.clean(data)     
+            # Store scores in the ranking dictionary
+            if document not in rankings:
+                rankings[document] = words[TF[0]-10:TF[0]+10]
+            else:
+                rankings[document] += words[TF[0]-10:TF[0]+10]
+            #print(rankings[document])
+            #print(document)
+            #print("11111111111111")
+    # Order results according to the scores
+    rankings = list(rankings.items())
+    #print(rankings[0])
     return rankings
 
     
