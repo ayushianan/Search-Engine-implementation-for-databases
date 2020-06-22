@@ -1,11 +1,6 @@
 # Search Engine Implementation for database
 * Database: MongoDB
 * Data structure: Inverted Index
--------------------------------------------
-## Dependencies Required
-* Python3
-* MongoDB
-* Qt-Creator 
 -----------------------------------------------
 ## Inverted Index
 An inverted index is an index data structure storing a mapping from content, such as words or numbers, to its locations in a document or a set of documents. In simple words, it is a hashmap like  data structure that directs you from a word to a document or a web page.
@@ -17,7 +12,11 @@ Whenever I want to search for “cat”, I want to see a document that has infor
 > * **Record Document IDs**
 If word is already present add reference of document to index else create new entry. Add additional information like frequency of word, location of word etc.
 Repeat for all documents and sort the words.
-
+-------------------------------------------
+## Dependencies Required
+* Python3
+* MongoDB
+* Qt-Creator 
 --------------------------------------------
 ## File System
 1. **Storage.py** : Creates the folder "New Testament" and stores txt files in it.
