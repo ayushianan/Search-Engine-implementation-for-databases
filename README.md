@@ -34,4 +34,4 @@ $ sudo python3 main.py
 ```
 -------------------------------------------------
 ## Output
-!(/output/output.png)
+![output snapshots](/output/output.png)
