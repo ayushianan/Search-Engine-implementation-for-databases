@@ -26,6 +26,7 @@ def clean(data):
 def index(file, words, index):
     for position in range(len(words)):
         word = words[position]     
+        #each word has frequency and has document and in tht document frequency and position
         # If the word is not in the index
         if words[position] not in index:
             index[word] = {'term frequency' : 1,
@@ -52,6 +53,6 @@ def index(file, words, index):
 def store(index, folder):
     collection = db[folder]
     for word in index:
-        collection.save({'_id' : word, 'info' : index[word]})
+        collection.save({'_id' : word, 'info' : index[word]})#storing in mongo db
     
     

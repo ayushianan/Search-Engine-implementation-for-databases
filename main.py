@@ -15,6 +15,7 @@ db = client.Inverted_Index
 folder = 'New Testament'
 collection = db[folder]
 
+
 class browser(QtGui.QMainWindow):
     def __init__(self, parent = None):
         QtGui.QWidget.__init__(self, parent)
@@ -33,8 +34,13 @@ class browser(QtGui.QMainWindow):
             index[word] = collection.find({'_id' : word})[0]['info']
         # Rank the documents according to the query
         results = rankDocuments(index, words)
+        i=0
         for result in results:
-            self.ui.listWidget.addItem(result[0]+' : '+str(round(result[1], 2)))
+            if(i<10):
+                self.ui.listWidget.addItem(result[0]+' : '+str(round(result[1], 2)))
+            i=i+1
+	    
+	    
             
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
