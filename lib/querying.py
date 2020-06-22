@@ -59,7 +59,7 @@ def rankDocuments1(index, words):
                         name = re.match('(^[^.]*)', file).group(0)
                         if name==document:
                                     data = open(file).read().splitlines()   
-                                    words = parsing.clean(data)     
+                                    words = parsing.clean1(data)     
             # Store scores in the ranking dictionary
             if document not in rankings:
                 rankings[document] = words[TF[0]-10:TF[0]+10]

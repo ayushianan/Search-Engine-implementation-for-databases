@@ -22,6 +22,19 @@ def clean(data):
     words = [word for word in words if word not in frenchStopWords]
     # Done!
     return words
+def clean1(data):
+    # Concatenate the lines into a big string
+    words = [word for word in ' '.join(data).split(' ')]
+    # Search every word in the big string
+    words = p.findall(' '.join(words))
+    # Lower case
+    words = [word.lower() for word in words]
+    # Stem word
+    #words = [fs().stemWord(word) for word in words]
+    # Remove stop words
+    #words = [word for word in words if word not in frenchStopWords]
+    # Done!
+    return words
 
 def index(file, words, index):
     for position in range(len(words)):
